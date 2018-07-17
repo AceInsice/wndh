@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>选项卡</title>
+    <script type="text/javascript" src="js/switchTab.js" ></script>
+    <link rel = "stylesheet" href = "css/normalize.css" />
+    <style type = "text/css">
+        #tab {width: 500px;margin: 50px auto;}
+        .tab-menu ul {height:30px;}
+        .tab-menu ul li {float:left;width:50px;height:30px;margin-right:3px;list-style:none;color:#000;border:solid 1px gray;border-bottom:none; text-align:center;line-height:30px;}
+        .tab-menu ul li.active {background-color: #007bc7;color: #fff;}
+        .tab-menu ul li:hover {cursor: pointer;}
+        .tab-box {height:150px;border:solid 1px gray;}
+        .tab-box div {display:none;}
+        .tab-box div.active {display:block;}
+    </style>
+</head>
+<body>
+<div id = "tab">
+    <div class = "tab-menu class1">
+        <ul>
+            <li class = "active class4">时事</li>
+            <li>体育</li>
+            <li>娱乐</li>
+        </ul>
+    </div>
+    <div class = "tab-box class2">
+        <div class = "active">时事</div>
+        <div>体育</div>
+        <div>娱乐</div>
+    </div>
+</div>
+<div class = "tab">
+    <div class = "tab-menu class1">
+        <ul>
+            <li class = "active class4">时事</li>
+            <li>体育</li>
+            <li>娱乐</li>
+        </ul>
+    </div>
+    <div class = "tab-box class2">
+        <div class = "active">时事</div>
+        <div>体育</div>
+        <div>娱乐</div>
+    </div>
+</div>
+<script type="text/javascript">
+    switchTab.listen('#tab');
+    switchTab.listen('.tab');
+</script>
+</body>
+</html>

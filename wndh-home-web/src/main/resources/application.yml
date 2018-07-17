@@ -1,0 +1,42 @@
+#DUBBO
+dubbox:
+  application:
+    name: wndh-web-home
+    organization: dubbox
+    owner: binux
+  registry:
+    protocol: zookeeper
+    address: 47.104.185.165:2181
+  annotation:
+    package: xg.yxtk.wndh.controller
+  monitor:
+    enabled: false
+    address: 47.104.185.165:6060
+    username: admin
+    password: admin
+
+#配置模板想到classpath路径，后面须加上"/"
+beetl:
+  templates-path: templates/
+  config:
+      html-tag-flag: true
+#配置模板的后缀，自动读取spring.mvc.view.suffix
+spring:
+  mvc:
+    view:
+      suffix: .html
+
+server:
+  port: 8084
+
+
+# swagger2
+swagger2.package: xg.yxtk.wndh.controller
+
+# Redis
+redisKey:
+  # 缓存时间
+  expire_time: 120
+  prefix:
+    # 验证码Redis前缀
+    verifycode: 'VERIFYCODE:'

@@ -1,0 +1,32 @@
+#DUBBOX
+dubbox:
+  application: 
+    name: wndh-redis-service
+    organization: dubbox
+    owner: binux
+  registry: 
+    protocol: zookeeper
+    address: 47.104.185.165:2181
+  annotation:
+    package: xg.yxtk.redis
+  protocol:
+    name: dubbo
+    port: 20881
+    timeout: 30000
+    threadpool: fixed
+    threads: 500
+    accepts: 1000
+    serialization: kryo
+    optimizer: xg.yxtk.serial.SerializationOptimizerImpl
+  monitor:
+    enabled: false
+    address: 47.104.185.165:6060
+    username: admin
+    password: admin
+
+# REDIS (RedisProperties)
+redis:
+  cluster: false
+  single-host: 47.104.185.165
+  single-port: 6379
+  password:

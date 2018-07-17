@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xg.yxtk.mapper.TbNavigationAddressMapper" >
+  <resultMap id="BaseResultMap" type="xg.yxtk.pojo.TbNavigationAddress" >
+    <id column="addr_id" property="addrId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="addr_name" property="addrName" jdbcType="VARCHAR" />
+    <result column="navigation_count" property="navigationCount" jdbcType="DOUBLE" />
+    <result column="item_id" property="itemId" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    addr_id, user_id, addr_name, navigation_count, item_id, created, updated
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xg.yxtk.pojo.TbNavigationAddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_navigation_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_navigation_address
+    where addr_id = #{addrId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_navigation_address
+    where addr_id = #{addrId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xg.yxtk.pojo.TbNavigationAddressExample" >
+    delete from tb_navigation_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xg.yxtk.pojo.TbNavigationAddress" >
+    insert into tb_navigation_address (addr_id, user_id, addr_name, 
+      navigation_count, item_id, created, 
+      updated)
+    values (#{addrId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{addrName,jdbcType=VARCHAR}, 
+      #{navigationCount,jdbcType=DOUBLE}, #{itemId,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{updated,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="xg.yxtk.pojo.TbNavigationAddress" >
+    insert into tb_navigation_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addrId != null" >
+        addr_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="addrName != null" >
+        addr_name,
+      </if>
+      <if test="navigationCount != null" >
+        navigation_count,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addrId != null" >
+        #{addrId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="addrName != null" >
+        #{addrName,jdbcType=VARCHAR},
+      </if>
+      <if test="navigationCount != null" >
+        #{navigationCount,jdbcType=DOUBLE},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xg.yxtk.pojo.TbNavigationAddressExample" resultType="java.lang.Integer" >
+    select count(*) from tb_navigation_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_navigation_address
+    <set >
+      <if test="record.addrId != null" >
+        addr_id = #{record.addrId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrName != null" >
+        addr_name = #{record.addrName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.navigationCount != null" >
+        navigation_count = #{record.navigationCount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.itemId != null" >
+        item_id = #{record.itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.created != null" >
+        created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updated != null" >
+        updated = #{record.updated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_navigation_address
+    set addr_id = #{record.addrId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      addr_name = #{record.addrName,jdbcType=VARCHAR},
+      navigation_count = #{record.navigationCount,jdbcType=DOUBLE},
+      item_id = #{record.itemId,jdbcType=VARCHAR},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      updated = #{record.updated,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xg.yxtk.pojo.TbNavigationAddress" >
+    update tb_navigation_address
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="addrName != null" >
+        addr_name = #{addrName,jdbcType=VARCHAR},
+      </if>
+      <if test="navigationCount != null" >
+        navigation_count = #{navigationCount,jdbcType=DOUBLE},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where addr_id = #{addrId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xg.yxtk.pojo.TbNavigationAddress" >
+    update tb_navigation_address
+    set user_id = #{userId,jdbcType=VARCHAR},
+      addr_name = #{addrName,jdbcType=VARCHAR},
+      navigation_count = #{navigationCount,jdbcType=DOUBLE},
+      item_id = #{itemId,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP}
+    where addr_id = #{addrId,jdbcType=VARCHAR}
+  </update>
+</mapper>
